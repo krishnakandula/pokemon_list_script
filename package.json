@@ -1,0 +1,22 @@
+{
+  "name": "pokemon_list_script",
+  "version": "1.0.0",
+  "description": "A script that creates the initial data required for PokeManager",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krishnakandula/pokemon_list_script.git"
+  },
+  "author": "Krishna Chaitanya Kandula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krishnakandula/pokemon_list_script/issues"
+  },
+  "homepage": "https://github.com/krishnakandula/pokemon_list_script#readme",
+  "dependencies": {
+    "axios": "^0.15.3"
+  }
+}
