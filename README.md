@@ -1,4 +1,4 @@
-# pokemon_list_script
+# Pokemon List Script
 A script that creates a list of the initial data required for PokeManager.  
 
 ## Commands  
