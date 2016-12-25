@@ -1,5 +1,16 @@
 # Pokemon List Script
-A script that creates a list of the initial data required for PokeManager.  
+A script that creates a list of the initial data required for PokeManager using the API found at www.pokeapi.co.
+
+## Instructions
+1. Clone or downlaod this repository.
+2. Run the following command to download the needed dependencies.
+    ```
+    npm install
+    ```
+3. Use node to run 'script.js' to begin downloading the data. All data will be stored to a file name 'data.json' in the same directory as 'script.js'.
+    ```
+    node script.js
+    ```
 
 ## Commands  
 *  start - specifies the id of the starting pokemon  
@@ -11,7 +22,8 @@ A script that creates a list of the initial data required for PokeManager.
 	* takes a single integer as an argument  
 	```
 	--end or -e
-	```
+	```  
+	
 ## Examples
 * Basic call to get data. Default value for '--start' is 1 and default value for '--end' is 10.  
 	```
