@@ -18,6 +18,7 @@
   "homepage": "https://github.com/krishnakandula/pokemon_list_script#readme",
   "dependencies": {
     "axios": "^0.15.3",
-    "jsonfile": "^2.4.0"
+    "jsonfile": "^2.4.0",
+    "yargs": "^6.5.0"
   }
 }

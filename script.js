@@ -1,40 +1,35 @@
-const axios = require('axios');
-const pokemon = require('./pokemon');
-const jf = require('jsonfile');
+const yargs = require('yargs');
+const service = require('./pokemon_service');
 
-let start = 1;
-let end = 10;
+const argv = yargs.options({
+        start: {
+            demand: false,
+            alias: 's',
+            describe: 'Starting index of Pokedex to grab data from. Minimum is 1.',
+            default: 1,
+            string: false
+        },
+        end: {
+            demand: false,
+            alias: 'e',
+            describe: 'Ending index of Pokedex to grab data from. Maximum is 811.',
+            default: 10,
+            string: false
+        }
+    })
+    .help()
+    .alias('help', 'h')
+    .argv;
 
-let getDataFromService = (start, pokemonList, end) => {
-	let baseUrl = `http://pokeapi.co/api/v2/pokemon/${start}`;
-	if(start > end){
-		console.log(JSON.stringify(pokemonList));
-		let obj = {name: 'Test'};
-		jf.writeFile('./data.json', pokemonList, (error) => {
-			console.log(error);
-		});
-	}
-	else {
-		console.log(start);
-		axios.get(baseUrl).then(response => {
-			pokemonList.push(getPokemonFromData(response.data));
-			getDataFromService(start + 1, pokemonList, end);
-		}).catch(error => {
-			
-		});
-	}
+if(argv.start <= 0){
+    console.error(`ERROR: No Pokemon exists with id ${argv.start}`);
+    throw 'INVALID_ID'
 }
 
-let getPokemonFromData = (data) => {
-	let p = new pokemon.Pokemon();
-	
-	p.id = data.id;
-	p.name = data.name;
-	p.type1 = data.types[0].type.name;
-	if (data.types.length > 1)
-		p.type2 = data.types[1].type.name;
-	
-	return p;
+if(argv.start < argv.end){
+    console.error('ERROR: Please enter a valid range.')
+    throw 'INVALID_RANGE'
 }
 
-getDataFromService(start, [], end);
+console.log(`Grabbing JSON data for Pokemon in range of ${argv.start} - ${argv.end}`);
+service.getDataFromService(argv.start, argv.end, []);
