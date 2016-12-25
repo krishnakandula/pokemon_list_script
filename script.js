@@ -2,19 +2,19 @@ const yargs = require('yargs');
 const service = require('./pokemon_service');
 
 const argv = yargs.options({
-        start: {
+        s: {
             demand: false,
-            alias: 's',
+            alias: 'start',
             describe: 'Starting index of Pokedex to grab data from. Minimum is 1.',
             default: 1,
-            string: false
+            number: true
         },
-        end: {
+        e: {
             demand: false,
-            alias: 'e',
+            alias: 'end',
             describe: 'Ending index of Pokedex to grab data from. Maximum is 811.',
             default: 10,
-            string: false
+            number:true
         }
     })
     .help()
@@ -26,7 +26,7 @@ if(argv.start <= 0){
     throw 'INVALID_ID'
 }
 
-if(argv.start < argv.end){
+if(argv.start > argv.end){
     console.error('ERROR: Please enter a valid range.')
     throw 'INVALID_RANGE'
 }

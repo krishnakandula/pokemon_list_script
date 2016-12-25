@@ -9,15 +9,16 @@ const pokemon = require('./pokemon');
 let getDataFromService = (start, end, pokemonList) => {
     let baseUrl = `http://pokeapi.co/api/v2/pokemon/${start}`;
     if(start > end){
-        console.log(JSON.stringify(pokemonList));
+        console.log('Writing data to file...');
         let obj = {name: 'Test'};
         jf.writeFile('./data.json', pokemonList, (error) => {
-            // console.log(error);
+            console.log('Finished writing data to ./data.json');
         });
     }
     else {
-        console.log(start);
+        console.log(`Retrieving data for Pokemon with id ${start}`);
         axios.get(baseUrl).then(response => {
+            console.log(`Retrieved data for ${JSON.stringify(response.data.name)}`);
             pokemonList.push(getPokemonFromData(response.data));
             getDataFromService(start + 1, end, pokemonList);
         }).catch(error => {

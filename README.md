@@ -12,3 +12,11 @@ A script that creates a list of the initial data required for PokeManager.
 	```
 	-end or --e
 	```
+## Examples
+* Basic call to get data. Default value for '-start' is 1 and default value for '-end' is 10.  
+	```
+	node script.js
+	```
+* Specify arguments for '-start' and '-end'.  
+	```
+	node script.js -start=1
