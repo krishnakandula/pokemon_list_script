@@ -7,7 +7,7 @@ A script that creates a list of the initial data required for PokeManager using 
     ```
     npm install
     ```
-3. Use node to run 'script.js' to begin downloading the data. All data will be stored to a file name 'data.json' in the same directory as 'script.js'.
+3. Use node to run 'script.js' to begin downloading the data. All data will be stored to a file name 'initial_data.json' in the same directory as 'script.js'.
     ```
     node script.js
     ```

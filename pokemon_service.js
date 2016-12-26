@@ -11,8 +11,8 @@ let getDataFromService = (start, end, pokemonList) => {
     if(start > end){
         console.log('Writing data to file...');
         let obj = {name: 'Test'};
-        jf.writeFile('./data.json', pokemonList, (error) => {
-            console.log('Finished writing data to ./data.json');
+        jf.writeFile('./initial_data.json', pokemonList, (error) => {
+            console.log('Finished writing data to ./intial_data.json');
         });
     }
     else {

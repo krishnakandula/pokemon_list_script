@@ -40,4 +40,4 @@ jspm_packages
 .idea/
 
 # Data files
-data.json
+initial_data.json
