@@ -12,7 +12,7 @@ let getDataFromService = (start, end, pokemonList) => {
         console.log('Writing data to file...');
         let obj = {name: 'Test'};
         jf.writeFile('./initial_data.json', pokemonList, (error) => {
-            console.log('Finished writing data to ./intial_data.json');
+            console.log('Finished writing data to ./initial_data.json');
         });
     }
     else {
@@ -35,7 +35,7 @@ let getPokemonFromData = (data) => {
     p.type1 = data.types[0].type.name;
     if (data.types.length > 1)
         p.type2 = data.types[1].type.name;
-
+    p.front_default_sprite_uri = data.sprites.front_default;
     return p;
 }
 

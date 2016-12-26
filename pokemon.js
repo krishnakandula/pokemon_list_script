@@ -1,9 +1,10 @@
 class Pokemon {
-	constructor(id, name, type1, type2){
+	constructor(id, name, type1, type2, front_default_sprite_uri){
 		this._id = id;
 		this._name = name;
 		this._type1 = type1;
 		this._type2 = type2;
+		this._front_default_sprite_uri = front_default_sprite_uri;
 	}
 	
 	get id () {
@@ -37,6 +38,14 @@ class Pokemon {
 	set type2 (type2) {
 		this._type2 = type2;
 	}
+
+    get front_default_sprite_uri() {
+        return this._front_default_sprite_uri;
+    }
+
+    set front_default_sprite_uri(value) {
+        this._front_default_sprite_uri = value;
+    }
 }
 
 module.exports = {
