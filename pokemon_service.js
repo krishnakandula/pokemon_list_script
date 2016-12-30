@@ -7,7 +7,8 @@ const jf = require('jsonfile');
 const pokemon = require('./pokemon');
 
 let getDataFromService = (start, end, pokemonList) => {
-    let baseUrl = `http://pokeapi.co/api/v2/pokemon/${start}`;
+    let pokemonBaseUrl = `http://pokeapi.co/api/v2/pokemon/${start}`;
+    let speciesBaseUrl = `https://www.pokeapi.co/api/v2/pokemon-species/${start}/`
     if(start > end){
         console.log('Writing data to file...');
         let obj = {name: 'Test'};
