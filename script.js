@@ -12,7 +12,7 @@ const argv = yargs.options({
         e: {
             demand: false,
             alias: 'end',
-            describe: 'Ending index of Pokedex to grab data from. Maximum is 811.',
+            describe: 'Ending index of Pokedex to grab data from. Maximum is 721.',
             default: 10,
             number:true
         }
@@ -27,8 +27,13 @@ if(argv.start <= 0){
 }
 
 if(argv.start > argv.end){
-    console.error('ERROR: Please enter a valid range.')
-    throw 'INVALID_RANGE'
+    console.error('ERROR: Please enter a valid range.');
+    throw 'INVALID_RANGE';
+}
+
+if(argv.end >= 722){
+    console.error('ERROR: Only Pokemon up to #721 are supported.');
+    throw 'INVALID_RANGE';
 }
 
 console.log(`Grabbing JSON data for Pokemon in range of ${argv.start} - ${argv.end}`);
