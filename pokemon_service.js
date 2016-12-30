@@ -8,7 +8,10 @@ const pokemon = require('./pokemon');
 
 let getDataFromService = (start, end, pokemonList) => {
     let pokemonBaseUrl = `http://pokeapi.co/api/v2/pokemon/${start}`;
+    //Used for getting the pokedex description for each pokemon
     let speciesBaseUrl = `https://www.pokeapi.co/api/v2/pokemon-species/${start}/`
+
+    //Recursive base case
     if(start > end){
         console.log('Writing data to file...');
         let obj = {name: 'Test'};
@@ -18,25 +21,37 @@ let getDataFromService = (start, end, pokemonList) => {
     }
     else {
         console.log(`Retrieving data for Pokemon with id ${start}`);
-        axios.get(baseUrl).then(response => {
-            console.log(`Retrieved data for ${JSON.stringify(response.data.name)}`);
-            pokemonList.push(getPokemonFromData(response.data));
+        axios.all([
+            axios.get(pokemonBaseUrl),
+            axios.get(speciesBaseUrl)
+        ]).then(axios.spread((pokemonResponse, speciesResponse) => {
+            let newPokemon = getPokemonFromData(pokemonResponse.data, speciesResponse.data);
+            pokemonList.push(newPokemon);
             getDataFromService(start + 1, end, pokemonList);
-        }).catch(error => {
+        })).catch(error => {
             console.error('ERROR:', error);
         });
+        // axios.get(baseUrl).then(response => {
+        //     console.log(`Retrieved data for ${JSON.stringify(response.data.name)}`);
+        //     pokemonList.push(getPokemonFromData(response.data));
+        //     getDataFromService(start + 1, end, pokemonList);
+        // }).catch(error => {
+        //     console.error('ERROR:', error);
+        // });
     }
 }
 
-let getPokemonFromData = (data) => {
+let getPokemonFromData = (pokemonData, descriptionData) => {
     let p = new pokemon.Pokemon();
 
-    p.id = data.id;
-    p.name = data.name;
-    p.type1 = data.types[0].type.name;
-    if (data.types.length > 1)
-        p.type2 = data.types[1].type.name;
-    p.front_default_sprite_uri = data.sprites.front_default;
+    p.id = pokemonData.id;
+    p.name = pokemonData.name;
+    p.type1 = pokemonData.types[0].type.name;
+    if (pokemonData.types.length > 1)
+        p.type2 = pokemonData.types[1].type.name;
+    p.front_default_sprite_uri = pokemonData.sprites.front_default;
+    p.description = descriptionData.flavor_text_entries[1].flavor_text;
+
     return p;
 }
 
