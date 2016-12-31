@@ -31,13 +31,6 @@ let getDataFromService = (start, end, pokemonList) => {
         })).catch(error => {
             console.error('ERROR:', error);
         });
-        // axios.get(baseUrl).then(response => {
-        //     console.log(`Retrieved data for ${JSON.stringify(response.data.name)}`);
-        //     pokemonList.push(getPokemonFromData(response.data));
-        //     getDataFromService(start + 1, end, pokemonList);
-        // }).catch(error => {
-        //     console.error('ERROR:', error);
-        // });
     }
 }
 
@@ -50,8 +43,11 @@ let getPokemonFromData = (pokemonData, descriptionData) => {
     if (pokemonData.types.length > 1)
         p.type2 = pokemonData.types[1].type.name;
     p.front_default_sprite_uri = pokemonData.sprites.front_default;
-    p.description = descriptionData.flavor_text_entries[1].flavor_text;
+    let description =  descriptionData.flavor_text_entries[1].flavor_text;
 
+    //Replace newline characters from response with spaces
+    console.log(description.replace(/\n/g, ' '));
+    p.description = description.replace(/\n/g, ' ');
     return p;
 }
 
