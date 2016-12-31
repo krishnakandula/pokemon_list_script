@@ -46,7 +46,6 @@ let getPokemonFromData = (pokemonData, descriptionData) => {
     let description =  descriptionData.flavor_text_entries[1].flavor_text;
 
     //Replace newline characters from response with spaces
-    console.log(description.replace(/\n/g, ' '));
     p.description = description.replace(/\n/g, ' ');
     return p;
 }
